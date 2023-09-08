@@ -1,0 +1,182 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --text-color: white;
+  --bg-url: url(./assets/bg-mobile.jpg);
+  --stroke-color: rgba(255, 255, 255, 0.5);
+  --surface-color: rgba(255, 255, 255, 0.1);
+  --surface-color-hover: background(255, 255, 255, 0.1);
+  --highlight-color: rgba(255, 255, 255, 0.2);
+  --switch-bg-url: url(./assets/Sun.svg);
+}
+
+.light {
+  --text-color: black;
+  --bg-url: url(./assets/bg-mobile-light.jpg);
+  --stroke-color: rgba(0, 0, 0, 0.5);
+  --surface-color: rgba(0, 0, 0, 0.05);
+  --surface-color-hover: background(0, 0, 0, 0.2);
+  --highlight-color: rgba(0, 0, 0, 0.1);
+  --switch-bg-url: url(./assets/MoonStars.svg);
+}
+
+body {
+  /* background-image: url(./assets/bg-mobile.jpg);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover; */
+
+  /* background: color image repeat position/size*/
+  background: var(--bg-url) no-repeat top center/cover;
+}
+
+body * {
+  font-family: "Inter", sans-serif;
+  color: var(--text-color);
+}
+
+#container {
+  width: 360px;
+  /* margin-top: 56px;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-left: auto; 
+  mesma coisa que isso aqui embaixo: 
+  margin: top right-left bottom */
+  margin: 56px auto 0;
+}
+
+/* PROFILE */
+
+/* É possível centralizar elementos inline adicionando a propriedade text-align: center na propriedade pai do elemento que deseja centralizar, dessa forma não é necessário aplicar o display block no elemento desejado */
+#profile {
+  text-align: center;
+  padding: 24px;
+}
+
+#profile img {
+  width: 112px;
+  display: block;
+  /* Para centralizar elementos usando margin é necessário que o elemento seja block
+  e tenha uma largura definida, caso contrário a margem da direita ocupará todo o espaço. */
+  margin: auto;
+}
+
+#profile p {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  margin-top: 8px;
+}
+
+/* SWITCH */
+
+#switch {
+  position: relative;
+  /* para o container ser do mesmo tamanho que o span, pra ficar certinho o visual */
+  width: 64px;
+  margin: 4px auto;
+}
+
+#switch button {
+  width: 32px;
+  height: 32px;
+  background: white var(--switch-bg-url) no-repeat center;
+  border: 0;
+  border-radius: 50%;
+  /* utilizado para sobrepor elementos */
+  position: absolute;
+  /* modifica o "andar" dos elementos */
+  z-index: 1;
+  /* isso permite navegar por todos os lugares na nova camada, se o elemento pai não tiver como position:relative, essa camada é o body todo */
+  /* top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; */
+  left: 0;
+  /* vai pegar metade do elemento (50%) e deixar ele pra cima */
+  transform: translateY(-50%);
+  /* colocando 50% no topo é como se ele ficasse exatamente no centro de altura */
+  top: 50%;
+}
+
+.light #switch button {
+  right: 0;
+  /* tem que resetar o intial se não fica left:0 e right:0 e dá conflito */
+  left: initial;
+}
+
+#switch span {
+  display: block;
+  width: 64px;
+  height: 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
+}
+
+/* LINKS */
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 0;
+}
+
+ul li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+/* pseudo-selector */
+ul li a:hover {
+  background: var(--surface-color-hover);
+  border: 1.5px solid var(--text-color);
+}
+
+/* SOCIAL LINKS */
+
+#social-links {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  padding: 24px 0;
+  font-size: 24px;
+}
+
+#social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  transition: background 0.2s;
+  /* border-radius 50% = círculo perfeito */
+  border-radius: 50%;
+}
+
+#social-links a:hover {
+  background: var(--highlight-color);
+}
+
+footer {
+  padding: 24px 0;
+  text-align: center;
+  font-size: 14px;
+}
