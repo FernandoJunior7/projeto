@@ -25,13 +25,8 @@
 }
 
 body {
-  /* background-image: url(./assets/bg-mobile.jpg);
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: cover; */
-
-  /* background: color image repeat position/size*/
   background: var(--bg-url) no-repeat top center/cover;
+  height: 100vh;
 }
 
 body * {
@@ -56,15 +51,10 @@ body * {
 
 #profile img {
   width: 112px;
-  display: block;
-  /* Para centralizar elementos usando margin é necessário que o elemento seja block
-  e tenha uma largura definida, caso contrário a margem da direita ocupará todo o espaço. */
-  margin: auto;
 }
 
 #profile p {
   font-weight: 500;
-  font-size: 16px;
   line-height: 24px;
   margin-top: 8px;
 }
@@ -98,12 +88,20 @@ body * {
   transform: translateY(-50%);
   /* colocando 50% no topo é como se ele ficasse exatamente no centro de altura */
   top: 50%;
+  /* como essa animação termina no valor padrão, o forwards não é necessário */
+  animation: slide-back .4s;
 }
 
 .light #switch button {
-  right: 0;
+  /* right: 0;
   /* tem que resetar o intial se não fica left:0 e right:0 e dá conflito */
-  left: initial;
+  /* left: initial; */
+  /* toda animação começa e termina, voltando ao estado inicial, para corrigir isso utilizamos a keyword "forwards", fazendo com que mantém as configurações finais da animação */
+  animation: slide-in .4s forwards;
+}
+
+#switch button:hover{
+  outline: 8px solid var(--highlight-color);
 }
 
 #switch span {
@@ -152,7 +150,6 @@ ul li a:hover {
 #social-links {
   display: flex;
   justify-content: center;
-  gap: 32px;
   padding: 24px 0;
   font-size: 24px;
 }
@@ -175,4 +172,36 @@ footer {
   padding: 24px 0;
   text-align: center;
   font-size: 14px;
+}
+
+
+/* MEDIA QUERIES */
+@media (min-width: 700px){
+  :root{
+    --bg-url: url(./assets/bg-desktop.jpg);
+  }
+
+  .light{
+    --bg-url: url(./assets/bg-desktop-light.jpg);
+  }
+}
+
+/* Pesquisar mais sobre @rules (at rules) */
+/* ANIMATION */
+@keyframes slide-in{
+  from{
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+@keyframes slide-back{
+  from{
+    left: 50%;
+  }
+  to{
+    left: 0;
+  }
 }
